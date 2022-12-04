@@ -1,0 +1,68 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+    <h1>Company Name </h1>
+
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul  class="nav navbar-nav"><br>
+
+
+    <h2><a class="navbar-link", href="{% url "admin:index" %}">Login</a></h2>
+    <h2><a class="navbar-link" href="{% url "Instruments3" %}">Calibration</a></h2>
+	  <h2><a class="navbar-link", href="{% url "index" %}">Notifications</a></h2>
+    <h2> <a class="navbar-link", href="{%url "drg" %}" >Drawings </a></h2>     
+    <h2><a class="navbar-link", href="{% url "home" %}">Back to Homepage</a></h2>
+
+
+
+
+      </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% block body_block%}
+    {% endblock %}
+
+<div class="right menu">
+<a Login </a>
+
+</div>
+
+
+        </div>
+    </body>
+</html>

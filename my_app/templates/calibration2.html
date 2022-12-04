@@ -1,0 +1,103 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+    <h1>Company Name </h1>
+
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul  class="nav navbar-nav"><br>
+
+    <h2><a class="navbar-link", href="{% url "admin:index" %}">Login</a></h2>   
+    <h2><a class="navbar-link", href="{% url "home" %}">Back to Main Homepage</a></h2>
+     <h2><a class="navbar-link", href="{% url "Instruments3" %}">Back to Calibration Homepage</a></h2><br>
+    
+
+     <h3><a class="navbar-link" href="{% url "Instruments" %}">Instruments Calibration Due</a></h3>
+     <h3><a class="navbar-link" href="{% url "Cal2" %}">Calibration Visualization</a></h3><br>
+    
+
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+
+<script type="text/javascript">
+
+</script>
+
+
+         {% if Instruments2 %}
+               <p>REV-02 10.05.2022</p>
+
+
+         <table id="customers">
+             <caption>Fixture Verification Status</caption>
+            <thead>
+              <th>Description</th>
+              <th>Make</th>
+              <th>Date of Calibration:</th>                
+              <th>Status</th>
+                <th>Remarks</th>
+
+
+           </thead>
+
+
+
+
+
+              {% for acc1 in Instruments2 %}
+
+
+
+
+             <tr>
+               <td>{{acc1.Description}}</td>
+               <td>{{acc1.Make}}</td>
+                <td>{{acc1.Date_of_Calibration}}</td>
+               <td>{{acc1.Status}}</td>
+            
+
+
+
+             </tr>
+
+
+             {% endfor %}
+         </table>
+
+          {% else %}
+        <p> All Instruments are Found ok</p>
+
+      {% endif %}

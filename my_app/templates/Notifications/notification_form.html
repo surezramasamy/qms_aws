@@ -1,0 +1,27 @@
+{% extends "home.html"%}
+{% block body_block %}
+
+
+
+<h2>
+  {% if form.instance.pk %}
+  Update Actions
+  {% else %}
+  Raise Notification
+  {% endif %}
+  {% load bootstrap4 %}
+
+
+
+</h2>
+
+<form  method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+
+  <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+
+
+
+{%  endblock %}

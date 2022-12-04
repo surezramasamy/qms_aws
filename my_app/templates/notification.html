@@ -1,0 +1,134 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+    <h1>Company Name </h1>
+
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul  class="nav navbar-nav"><br>
+
+    <h2><a class="navbar-link", href="{% url "admin:index" %}">Login</a></h2>
+	  <h2><a class="navbar-link", href="{% url "index" %}">Notifications</a></h2>
+    <h2><a class="navbar-link", href="{% url "home" %}">Back to Homepage</a></h2>
+
+
+
+
+      </nav>
+
+
+
+
+
+
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #151B54;
+  color: white;
+}
+</style>
+
+<h2><a class="navbar-link", href="{% url "create" %}">Raise a Notification</a></h2>
+
+
+{% if user.is_authenticated %}
+<p>You are Logged in as {{user.get_username}}</p>
+<p><a href="{% url 'logout' %}?next={{request.path}}">Logout here</a></p>
+
+<br> <br><br>  
+
+ 
+{% else %}
+
+<p>You are not Logged in</p>
+<p></p><a href="{% url 'login' %}?next={{request.path}}">Login here</a></p>
+{% endif %}
+
+         {% if notify %}
+               
+
+
+         <table id="customers">
+             <caption>Notifications</caption>
+            <thead>
+              <th>Date</th>
+              <th>Information</th>
+              <th>Action_required</th>
+			         <th>Resp</th>
+                <th>Status</th>
+                <th>Action taken</th>
+                <th>Date Updated</th>
+               
+               
+				        <th>Remarks</th>
+                
+
+        
+
+
+           </thead>
+
+
+
+
+
+              {% for n in notify %}
+               {% if n.Status == "open" %}
+
+              
+            
+             <tr>
+               <td> {{n.date}}
+               
+               <td>{{n.Information}}</td>
+                <td>{{n.Action_required}}</td>
+			      	<td>{{n.Resp}}</td>
+               <td><a href="/update/{{n.id}}">{{n.Status}}</a></td>
+               <td>{{n.Action_taken}}</a></td>
+               <td>{{n.Action_date}}</a></td>
+              
+			        <td>{{n.Remarks}}</td>
+             
+
+              
+
+
+             </tr>
+
+              {% endif %}
+             {% endfor %}
+         </table>
+
+          {% else %}
+        <p>No pending Notifications</p>
+
+      {% endif %}

@@ -1,0 +1,89 @@
+<h2><a class="navbar-link", href="{% url "home" %}">Back to Main Homepage</a></h2>
+<h2><a class="navbar-link", href="{% url "Instruments3" %}">Back to Calibration Homepage</a></h2> <br>
+
+<h3><a class="navbar-link" href="{% url "Instruments" %}">Instruments Calibration Due</a></h3>
+<h3><a class="navbar-link" href="{% url "Instruments2" %}">Instruments Calibration Status</a></h3>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+
+
+  <style>.dataframe th{
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(236,236,236,1) 100%);
+  padding: 5px;
+  color: #343434;
+  font-family: monospace;
+  font-size: 110%;
+  border:2px solid #e0e0e0;
+  text-align:left !important;
+  }.dataframe{border: 3px solid #ffebeb !important;}</style>
+
+
+
+
+
+
+
+{% if chart1 %}
+ <img src="data:image/png;base64, {{chart1|safe}}">
+
+{% endif %}
+
+
+{% if chart %}
+ <img src="data:image/png;base64, {{chart|safe}}">
+
+{% endif %}
+
+{% if graph5 %}
+ <img src="data:image/png;base64, {{graph5|safe}}">
+
+{% endif %}
+
+<br><br><br>
+
+{% if chart3 %}
+ <img src="data:image/png;base64, {{chart3|safe}}">
+
+{% endif %}
+
+{% if graph %}
+ <img src="data:image/png;base64, {{graph|safe}}">
+
+{% endif %}
+
+{% if graph2 %}
+ <img src="data:image/png;base64, {{graph2|safe}}">
+
+{% endif %}
+
+
+
+<br><br><br><br>
+
+
+{% if df5 %}
+      <b>Plan vs Actual</b>
+      {{ df5|safe }}
+{% endif %}
+<br><br>
+{% if df8 %}
+      <b>Verification Frequency</b>
+      {{ df8|safe }}
+{% endif %}
+<br><br>
+
+{% if dframe4 %}
+      <b>Stagewise acceptance status</b>
+      {{ dframe4|safe }}
+{% endif %}
+</div>
+
+</div>

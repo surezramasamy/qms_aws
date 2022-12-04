@@ -1,0 +1,77 @@
+{% extends "admin/base.html" %}
+{% csrf_token %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Quality database</a></h1> <br><br>
+ <h2><a class="navbar-link", href="{% url "home" %}">Back to Homepage</a></h2>
+{% endblock %}
+
+{% block footer %}
+ {% csrf_token %}
+<div id="footer"></div>
+<script>
+
+
+
+function resizeTable() {
+  /* So Windows mouse users can see the horizontal scrollbar
+     https://github.com/CAVaccineInventory/vial/issues/363 */
+  if (window.matchMedia('screen and (min-width: 1000px)').matches) {
+    let container = document.querySelector("#changelist-form .results");
+    let paginator = document.querySelector("p.paginator");
+    if (!container || !paginator) {
+        return;
+    }
+    let height =
+        window.innerHeight -
+        container.getBoundingClientRect().top -
+        paginator.getBoundingClientRect().height -
+        2;
+    container.style.overflowY = "auto";
+    container.style.height = height + "px";
+  }
+}
+window.addEventListener("load", resizeTable);
+
+window.onscroll = function() {
+  myFunction()
+};
+
+(function($){
+ListFilterCollapsePrototype = {
+    bindToggle: function(){
+        var that = this;
+        this.$filterTitle.click(function(){
+            that.$filterContent.slideToggle();
+            that.$list.toggleClass('filtered');
+        });
+    },
+    init: function(filterEl) {
+        this.$filterTitle = $(filterEl).children('h2');
+        this.$filterContent = $(filterEl).children('h3, ul');
+        $(this.$filterTitle).css('cursor', 'pointer');
+        this.$list = $('#changelist');
+        this.bindToggle();
+    }
+}
+function ListFilterCollapse(filterEl) {
+    this.init(filterEl);
+}
+ListFilterCollapse.prototype = ListFilterCollapsePrototype;
+
+$(document).ready(function(){
+    $('#changelist-filter').each(function(){
+        var collapser = new ListFilterCollapse(this);
+    });
+});
+})(django.jQuery);
+
+</script>
+
+
+
+{% endblock %}
+
+
+

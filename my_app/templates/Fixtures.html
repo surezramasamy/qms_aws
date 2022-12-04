@@ -1,0 +1,109 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>  </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
+  </head>
+  <body>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container">
+
+    <div class="jumbotron">
+
+    <h1>Company Name </h1>
+
+
+      <nav class="navbar navbar-default navbar-static-top"
+      <ul  class="nav navbar-nav"><br>
+
+      
+    <h2><a class="navbar-link", href="{% url "admin:index" %}">Login</a></h2>
+    <h2><a class="navbar-link", href="{% url "home" %}">Back to Main Homepage</a></h2>   
+    <h2><a class="navbar-link", href="{% url "Instruments3" %}">Back to Calibration Homepage</a></h2><br>
+    <h3><a class="navbar-link" href="{% url "Fixtures2" %}">Fixtures and Templates Status</a></h3>
+    <h3><a class="navbar-link" href="{% url "Cal" %}">Fixtures and Templates Visualization</a></h3><br>
+    
+
+<style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+
+<script type="text/javascript">
+
+</script>
+
+
+         {% if Fixtures %}
+               <p>REV-02 10.04.2022</p>
+
+
+         <table id="customers">
+             <caption>Fixture Verification due</caption>
+            <thead>
+              <th>Fixture ID</th>
+              <th>Customer</th>
+                <th>Product</th>
+                  <th>Location</th>
+                    <th>Sub_Assembly</th>
+              <th>Description</th>
+              <th>Due for verification</th>
+
+
+
+
+           </thead>
+
+
+
+
+
+              {% for acc1 in Fixtures %}
+
+
+
+
+             <tr>
+               <td>{{acc1.Fixture_or_Template_ID}}</td>
+               <td>{{acc1.Customer}}</td>
+                <td>{{acc1.Product_description}}</td>
+               <td>{{acc1.Location_used}}</td>
+               <td>{{acc1.Sub_Assembly}}</td>
+               <td>{{acc1.Description}}</td>
+               <td>{{ acc1.Next_Verification_Due }}</td>
+
+
+
+
+             </tr>
+
+
+             {% endfor %}
+         </table>
+
+          {% else %}
+        <p>Fixtures No due for Calibration</p>
+
+      {% endif %}

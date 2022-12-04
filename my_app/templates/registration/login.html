@@ -1,0 +1,60 @@
+
+<html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>  </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    
+    
+      </head>
+      <body>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="container">
+    
+        <div class="jumbotron">
+    
+           
+          <nav class="navbar navbar-default navbar-static-top"
+          class="nav navbar-nav"><br>
+    
+    
+    
+    
+    
+    
+          </nav>
+
+
+
+{% if form.errors %}
+
+<p> Your username or password was incorrect,Try again</p>
+
+{% endif %}
+
+{% if next %}
+
+       {% if user.is_authenticated %}
+       <p> You dont have permission for this page </p>
+
+       {% else %}
+
+       <p> Please login to see this page </p>
+        {% endif %}
+    {% endif %}
+
+    <form method ='post' action="{% url 'login' %}">
+          {% csrf_token %}
+          {{form.username.label_tag}}
+          {{form.username}}
+           <br><br>           
+
+          {{form.password.label_tag}}
+          {{form.password}}
+          <input type="submit" value ='login'>
+          <input type="hidden" name="next" value="{{next}}">
+
+    
+
+    </form>
+
