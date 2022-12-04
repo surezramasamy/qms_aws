@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+   django_app:
+     build: ./djangoapp
+     volumes:
+       - staticfiles:/app/staticfiles
+     ports:
+       - 8000:8000
+     image: app:django
+     depends_on:
+      - pgdb
+     restart: "on-failure"
+
+   nginx:
+     build: ./nginx
+     volumes:
+       - staticfiles:/app/staticfiles
+     ports:
+       - 80:80
+     image: nginx:django
+     depends_on:
+       - django_app
+     restart: "on-failure"
+
+  #  pgdb:
+  #    image: postgres:13
+  #    volumes:
+  #      - pg_data:/var/lib/postgresql/data/
+  #    environment:
+  #      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  #      - POSTGRES_DB=${DB_NAME}
+  #      - POSTGRES_USER=${POSTGRES_USER}
+  #    restart: "on-failure"
+
+volumes:
+   staticfiles:
+   pg_data:
